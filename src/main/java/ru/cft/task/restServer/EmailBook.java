@@ -1,41 +1,35 @@
 package ru.cft.task.restServer;
 
+import java.util.HashMap;
+
 public class EmailBook {
-    private long id;
-    private String name;
-    private String email;
+    private HashMap<Long, EmailRecord> book;
+    private BookStatus status;
 
-    public EmailBook(long id, String name, String email) {
-        setId(id);
-        setName(name);
-        setEmail(email);
+    public EmailBook() {
+        this.book = new HashMap();
+        this.status.setStatus(true);
     }
 
-    public long getId() {
-        return id;
+    public BookStatus addRecord(EmailRecord rec) {
+        if (!this.book.containsKey(rec.getId())) {
+            this.book.put(rec.getId(), rec);
+            return this.status.setMessage("Запись успешно добавлена");
+        }else{
+            return this.status.setError("Запись с таким id уже существует");
+        }
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public BookStatus removeRecord(Long id) {
+        if (!this.book.containsKey(id)) {
+            this.book.remove(id);
+            return this.status.setMessage("Запись успешно удалена");
+        }else{
+            return this.status.setError("Записи с таким id не существует");
+        }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String toString(){
-        return String.valueOf(getId()).concat(": ").concat(getName()).concat(" - ").concat(getEmail());
+    public int count() {
+        return this.book.size();
     }
 }
