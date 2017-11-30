@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6452b13b-5b16-420c-9e2d-0c40791a2ae8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/afilippov.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/BookStatus.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/EmailBook.java" afterPath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/EmailBook.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/EmailBookController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/EmailBookController.java" />
@@ -427,7 +425,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512034509917</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Реализация книги">
+      <created>1512039100790</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1512039100790</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -503,7 +508,8 @@
     </ignored-roots>
     <MESSAGE value="Add ignore" />
     <MESSAGE value="Init commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init commit" />
+    <MESSAGE value="Реализация книги" />
+    <option name="LAST_COMMIT_MESSAGE" value="Реализация книги" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
