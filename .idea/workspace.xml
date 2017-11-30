@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6452b13b-5b16-420c-9e2d-0c40791a2ae8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/EmailBook.java" afterPath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/EmailBook.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/EmailBookController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/EmailBookController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -432,7 +430,21 @@
       <option name="project" value="LOCAL" />
       <updated>1512039100790</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Реализация книги">
+      <created>1512039121993</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1512039121993</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Реализация книги">
+      <created>1512039223736</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1512039223736</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
