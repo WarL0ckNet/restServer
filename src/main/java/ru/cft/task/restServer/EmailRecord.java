@@ -1,14 +1,32 @@
 package ru.cft.task.restServer;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class EmailRecord {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
 
+    public EmailRecord() {
+        super();
+    }
+
     public EmailRecord(long id, String name, String email) {
-        setId(id);
-        setName(name);
-        setEmail(email);
+        super();
+        this.id = id;
+        this.name = name;
+        this.email = email;
     }
 
     public long getId() {
@@ -35,7 +53,8 @@ public class EmailRecord {
         this.email = email;
     }
 
+    @Override
     public String toString() {
-        return String.valueOf(getId()).concat(": ").concat(getName()).concat(" - ").concat(getEmail());
+        return "Rec[" + id + "]: " + name + "<" + email + ">";
     }
 }
