@@ -1,8 +1,47 @@
 package ru.cft.task.restServer;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Component;
 
-@RepositoryRestResource
-public interface EmailBook extends CrudRepository{
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
+
+@Component
+public class EmailBook {
+    private List<EmailRecord> book;
+    private final AtomicLong new_id = new AtomicLong();
+
+    public EmailBook() {
+        book = new ArrayList<>();
+    }
+
+    public long addEmailRecord(String name, String email) {
+        long id = new_id.incrementAndGet();
+        book.add(new EmailRecord(id, name, email));
+        return id;
+    }
+
+    public boolean removeEmailRecord(long id) {
+        for (EmailRecord rec : book) {
+            if (rec.getId() == id) {
+                book.remove(rec);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int count() {
+        return book.size();
+    }
+
+    public EmailRecord findRec(long id) {
+        for (EmailRecord rec : book) {
+            if (rec.getId() == id) {
+                book.remove(rec);
+                return rec;
+            }
+        }
+        return null;
+    }
 }
