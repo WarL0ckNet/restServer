@@ -2,46 +2,62 @@ package ru.cft.task.restServer;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class EmailBook {
-    private List<EmailRecord> book;
-    private final AtomicLong new_id = new AtomicLong();
+    private Map<Long, EmailRecord> book;
 
     public EmailBook() {
-        book = new ArrayList<>();
+        book = new HashMap<>();
     }
 
-    public long addEmailRecord(String name, String email) {
-        long id = new_id.incrementAndGet();
-        book.add(new EmailRecord(id, name, email));
-        return id;
-    }
-
-    public boolean removeEmailRecord(long id) {
-        for (EmailRecord rec : book) {
-            if (rec.getId() == id) {
-                book.remove(rec);
-                return true;
+    public EmailRecord addEmailRecord(long id, String name, String email) throws EmailException {
+        for (Map.Entry<Long, EmailRecord> rec : book.entrySet()) {
+            if (rec.getValue().getEmail() == email) {
+                throw new EmailException("Запись с email " + email + " уже есть в базе");
             }
         }
-        return false;
+        EmailRecord new_rec = new EmailRecord(id, name, email);
+        book.put(id, new_rec);
+        return new_rec;
+    }
+
+    public boolean removeEmailRecord(long id) throws EmailException {
+        if (book.containsKey(id)) {
+            book.remove(id);
+            return true;
+        }
+        throw new EmailException("Запись с id = " + id + " не найдена");
     }
 
     public int count() {
         return book.size();
     }
 
-    public EmailRecord findRec(long id) {
-        for (EmailRecord rec : book) {
-            if (rec.getId() == id) {
-                book.remove(rec);
-                return rec;
+    public EmailRecord findRecordById(long id) throws EmailException {
+        if (book.containsKey(id)) {
+            return book.get(id);
+        }
+        throw new EmailException("Запись с id = " + id + " не найдена");
+    }
+
+    public EmailRecord findRecordByName(String name) throws EmailException {
+        for (Map.Entry<Long, EmailRecord> rec : book.entrySet()) {
+            if (rec.getValue().getName().toLowerCase() == name.toLowerCase()) {
+                return rec.getValue();
             }
         }
-        return null;
+        throw new EmailException("Запись с именем " + name + " не найдена");
+    }
+
+    public EmailRecord findRecordByEmail(String email) throws EmailException {
+        for (Map.Entry<Long, EmailRecord> rec : book.entrySet()) {
+            if (rec.getValue().getEmail().toLowerCase() == email.toLowerCase()) {
+                return rec.getValue();
+            }
+        }
+        throw new EmailException("Запись с email " + email + " не найдена");
     }
 }

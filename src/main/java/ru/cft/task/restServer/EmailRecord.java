@@ -37,6 +37,6 @@ public class EmailRecord {
 
     @Override
     public String toString() {
-        return "Rec[" + id + "]: " + name + "<" + email + ">";
+        return "Rec:" + name + "<" + email + ">";
     }
 }
