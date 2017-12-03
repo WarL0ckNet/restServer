@@ -16,7 +16,7 @@ public class EmailBook {
     public EmailRecord addEmailRecord(long id, String name, String email) throws EmailException {
         for (Map.Entry<Long, EmailRecord> rec : book.entrySet()) {
             if (rec.getValue().getEmail() == email) {
-                throw new EmailException("Запись с email " + email + " уже есть в базе");
+                throw new EmailException("Запись с {email = " + email + "} уже есть в базе");
             }
         }
         EmailRecord new_rec = new EmailRecord(id, name, email);
@@ -29,7 +29,7 @@ public class EmailBook {
             book.remove(id);
             return true;
         }
-        throw new EmailException("Запись с id = " + id + " не найдена");
+        throw new EmailException("Запись с {id = " + id + "} не найдена");
     }
 
     public int count() {
@@ -40,7 +40,7 @@ public class EmailBook {
         if (book.containsKey(id)) {
             return book.get(id);
         }
-        throw new EmailException("Запись с id = " + id + " не найдена");
+        throw new EmailException("Запись с {id = " + id + "} не найдена");
     }
 
     public EmailRecord findRecordByName(String name) throws EmailException {
@@ -49,7 +49,7 @@ public class EmailBook {
                 return rec.getValue();
             }
         }
-        throw new EmailException("Запись с именем " + name + " не найдена");
+        throw new EmailException("Запись с {name = " + name + "} не найдена");
     }
 
     public EmailRecord findRecordByEmail(String email) throws EmailException {
@@ -58,6 +58,19 @@ public class EmailBook {
                 return rec.getValue();
             }
         }
-        throw new EmailException("Запись с email " + email + " не найдена");
+        throw new EmailException("Запись с {email = " + email + "} не найдена");
+    }
+
+    public EmailRecord editRecord(long id, String name, String email) throws EmailException {
+        if (book.containsKey(id)) {
+            if (!name.isEmpty()) {
+                book.get(id).setName(name);
+            }
+            if (!email.isEmpty()) {
+                book.get(id).setEmail(email);
+            }
+            return book.get(id);
+        }
+        throw new EmailException("Запись с {id = " + id + "} не найдена");
     }
 }
