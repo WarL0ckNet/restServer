@@ -15,7 +15,7 @@ public class EmailBook {
 
     public EmailRecord addEmailRecord(long id, String name, String email) throws EmailException {
         for (Map.Entry<Long, EmailRecord> rec : book.entrySet()) {
-            if (rec.getValue().getEmail() == email) {
+            if (rec.getValue().getEmail().equalsIgnoreCase(email)) {
                 throw new EmailException("Запись с {email = " + email + "} уже есть в базе");
             }
         }
@@ -45,7 +45,7 @@ public class EmailBook {
 
     public EmailRecord findRecordByName(String name) throws EmailException {
         for (Map.Entry<Long, EmailRecord> rec : book.entrySet()) {
-            if (rec.getValue().getName().toLowerCase() == name.toLowerCase()) {
+            if (rec.getValue().getName().equalsIgnoreCase(name)) {
                 return rec.getValue();
             }
         }
@@ -54,7 +54,7 @@ public class EmailBook {
 
     public EmailRecord findRecordByEmail(String email) throws EmailException {
         for (Map.Entry<Long, EmailRecord> rec : book.entrySet()) {
-            if (rec.getValue().getEmail().toLowerCase() == email.toLowerCase()) {
+            if (rec.getValue().getEmail().equalsIgnoreCase(email)) {
                 return rec.getValue();
             }
         }

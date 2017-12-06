@@ -19,22 +19,24 @@ public class EmailBookController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<EmailRecord> addEmailRec(@RequestParam(value = "name") String name,
                                                    @RequestParam(value = "email") String email) throws EmailException {
-        System.out.println("Method POST: {name =" + name + ", email = " + email + "}");
+        System.out.println("Method POST: {name = " + name + ", email = " + email + "}");
         return new ResponseEntity<EmailRecord>(emailBook.addEmailRecord(new_id.incrementAndGet(), name, email), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<EmailRecord> findEmailRec(@RequestParam(value = "id") String id,
-                                                    @RequestParam(value = "name") String name,
-                                                    @RequestParam(value = "email") String email
+    public ResponseEntity<EmailRecord> findEmailRec(@RequestParam(value = "id", required = false) String id,
+                                                    @RequestParam(value = "name", required = false) String name,
+                                                    @RequestParam(value = "email", required = false) String email
     ) throws EmailException {
-        System.out.println("Method GET: {id = " + id + ", name =" + name + ", email = " + email + "}");
-        if (!name.isEmpty()) {
+        System.out.println("Method GET: {id = " + id + ", name = " + name + ", email = " + email + "}");
+        if (name != null && !name.isEmpty()) {
             return new ResponseEntity<EmailRecord>(emailBook.findRecordByName(name), HttpStatus.OK);
-        } else if (!email.isEmpty()) {
+        } else if (email != null && !email.isEmpty()) {
             return new ResponseEntity<EmailRecord>(emailBook.findRecordByEmail(email), HttpStatus.OK);
-        } else {
+        } else if (id != null && !id.isEmpty()) {
             return new ResponseEntity<EmailRecord>(emailBook.findRecordById(Long.valueOf(id)), HttpStatus.OK);
+        } else {
+            throw new EmailException("Задайте параметр для поиска");
         }
     }
 
@@ -43,7 +45,7 @@ public class EmailBookController {
                                                     @RequestParam(value = "name") String name,
                                                     @RequestParam(value = "email") String email
     ) throws EmailException {
-        System.out.println("Method PATCH: {id = " + id + ", name =" + name + ", email = " + email + "}");
+        System.out.println("Method PATCH: {id = " + id + ", name = " + name + ", email = " + email + "}");
         return new ResponseEntity<EmailRecord>(emailBook.editRecord(Long.valueOf(id), name, email), HttpStatus.OK);
     }
 
@@ -63,14 +65,5 @@ public class EmailBookController {
     public int countEmailRecords() {
         System.out.println("Method GET: count");
         return emailBook.count();
-    }
-
-    @ExceptionHandler({EmailException.class, Exception.class})
-    public ResponseEntity<ErrorResponse> exceptionHandler(Exception ex) {
-        ErrorResponse error = new ErrorResponse();
-        error.setErrorCode(HttpStatus.PRECONDITION_FAILED.value());
-        error.setMessage(ex.getMessage());
-        return new ResponseEntity<ErrorResponse>(error, HttpStatus.OK);
-
     }
 }
