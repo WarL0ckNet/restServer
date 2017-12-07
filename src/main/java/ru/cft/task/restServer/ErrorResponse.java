@@ -1,5 +1,6 @@
 package ru.cft.task.restServer;
 
+// Класс описания возвращаемой ошибки
 public class ErrorResponse {
     private int errorCode;
     private String message;

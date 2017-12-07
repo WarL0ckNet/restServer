@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionControllerAdvice {
     private static final Logger logger = LoggerFactory.getLogger(EmailBookController.class);
 
+    // Класс для хендлеров исключений
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> exceptionHandler(Exception ex) {
         ErrorResponse error = new ErrorResponse();

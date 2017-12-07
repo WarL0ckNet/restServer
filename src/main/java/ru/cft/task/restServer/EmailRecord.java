@@ -1,9 +1,10 @@
 package ru.cft.task.restServer;
 
+// Класс записи
 public class EmailRecord {
-    private long id;
-    private String name;
-    private String email;
+    private long id;        // id записи
+    private String name;    // Имя
+    private String email;   // почта
 
     public EmailRecord(long id, String name, String email) {
         this.id = id;
