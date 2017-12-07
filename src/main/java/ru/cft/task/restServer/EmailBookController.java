@@ -1,5 +1,7 @@
 package ru.cft.task.restServer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequestMapping(value = "/")
 public class EmailBookController {
 
+    private static final Logger logger = LoggerFactory.getLogger(EmailBookController.class);
     private final AtomicLong new_id = new AtomicLong();
 
     @Autowired
@@ -19,7 +22,7 @@ public class EmailBookController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<EmailRecord> addEmailRec(@RequestParam(value = "name") String name,
                                                    @RequestParam(value = "email") String email) throws EmailException {
-        System.out.println("Method POST: {name = " + name + ", email = " + email + "}");
+        logger.warn("Method POST: {name = " + name + ", email = " + email + "}");
         return new ResponseEntity<EmailRecord>(emailBook.addEmailRecord(new_id.incrementAndGet(), name, email), HttpStatus.OK);
     }
 
@@ -28,7 +31,7 @@ public class EmailBookController {
                                                     @RequestParam(value = "name", required = false) String name,
                                                     @RequestParam(value = "email", required = false) String email
     ) throws EmailException {
-        System.out.println("Method GET: {id = " + id + ", name = " + name + ", email = " + email + "}");
+        logger.warn("Method GET: {id = " + id + ", name = " + name + ", email = " + email + "}");
         if (name != null && !name.isEmpty()) {
             return new ResponseEntity<EmailRecord>(emailBook.findRecordByName(name), HttpStatus.OK);
         } else if (email != null && !email.isEmpty()) {
@@ -40,18 +43,18 @@ public class EmailBookController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.PATCH)
+    @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<EmailRecord> editEmailRec(@RequestParam(value = "id", required = true) String id,
                                                     @RequestParam(value = "name") String name,
                                                     @RequestParam(value = "email") String email
     ) throws EmailException {
-        System.out.println("Method PATCH: {id = " + id + ", name = " + name + ", email = " + email + "}");
+        logger.warn("Method PUT: {id = " + id + ", name = " + name + ", email = " + email + "}");
         return new ResponseEntity<EmailRecord>(emailBook.editRecord(Long.valueOf(id), name, email), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<ErrorResponse> removeEmailRec(@RequestParam(value = "id", required = true) long id) throws EmailException {
-        System.out.println("Method DELETE: {id = " + id + "}");
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<ErrorResponse> removeEmailRec(@PathVariable(value = "id") long id) throws EmailException {
+        logger.warn("Method DELETE: {id = " + id + "}");
         if (emailBook.removeEmailRecord(id)) {
             ErrorResponse message = new ErrorResponse();
             message.setErrorCode(HttpStatus.OK.value());
@@ -63,7 +66,7 @@ public class EmailBookController {
 
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     public int countEmailRecords() {
-        System.out.println("Method GET: count");
+        logger.warn("Method GET: count");
         return emailBook.count();
     }
 }

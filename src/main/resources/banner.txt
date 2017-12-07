@@ -2,5 +2,3 @@
  ,'_/  / __//_  _/
 / /_  / _/   / /
 |__/ /_/    /_/
-
-${application.title} ${application.formatted-version}
