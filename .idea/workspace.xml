@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6452b13b-5b16-420c-9e2d-0c40791a2ae8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/EmailBookController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/EmailBookController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/ExceptionControllerAdvice.java" afterPath="$PROJECT_DIR$/src/main/java/ru/cft/task/restServer/ExceptionControllerAdvice.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/banner.txt" afterPath="$PROJECT_DIR$/src/main/resources/banner.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -279,7 +276,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.23793103" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="JAVA&#10;HTML" />
     <property name="settings.editor.splitter.proportion" value="0.23271665" />
@@ -470,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512539067195</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Стабильный релиз">
+      <created>1512623195152</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1512623195152</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -565,7 +569,8 @@
     <MESSAGE value="Реализация exception" />
     <MESSAGE value="Добавление метода patch" />
     <MESSAGE value="Добавление логов" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавление логов" />
+    <MESSAGE value="Стабильный релиз" />
+    <option name="LAST_COMMIT_MESSAGE" value="Стабильный релиз" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
